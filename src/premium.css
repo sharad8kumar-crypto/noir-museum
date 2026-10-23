@@ -1,0 +1,287 @@
+/* NOIR — premium layer. Import AFTER style.css so these rules win. */
+
+:root {
+  --ink: #0a0a09;
+  --stone: #ece8df;
+  --ash: #a39e94;
+  --line: #2a2926;
+  --muted: #a39e94;
+  --font-display: 'Bodoni Moda', 'Times New Roman', serif;
+  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+  font-family: var(--font-body);
+  color: var(--stone);
+  background: var(--ink);
+}
+
+html {
+  background: var(--ink);
+}
+
+/* Transparent so the 3D atmosphere shows through every section */
+body {
+  background: transparent;
+}
+
+/* Display type: high-contrast serif, like carved inscription */
+.hero h1,
+.section-heading h2,
+.object-card h2,
+.about-content h2,
+.visit-section h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 0.95;
+}
+
+.hero h1 span,
+.section-heading h2 span,
+.about-content h2 span,
+.visit-section h2 span {
+  font-style: italic;
+  color: var(--ash);
+}
+
+.collection-card h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+/* Contrast fix: small labels were ~3.5:1, now ~6.8:1 */
+.section-kicker,
+.hero-index,
+.exhibition-note,
+.scene-hint,
+.scene-index,
+.scene-index span,
+.object-meta span,
+.card-caption span,
+.card-number,
+.about-mark,
+.visit-instructions p span,
+.collection-disclaimer,
+#collection-results,
+.museum-footer > span,
+.museum-footer .copyright {
+  color: var(--muted);
+}
+
+/* Footer was touching the screen edges */
+.museum-footer {
+  padding-inline: 6%;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--stone);
+  outline-offset: 4px;
+}
+
+/* Subtle film grain for a printed, gallery-wall feel */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+/* Keep the headline readable over the 3D hall */
+.hero h1 {
+  text-shadow: 0 0 60px rgba(0, 0, 0, 0.65);
+}
+
+/* ---------- Router: hidden pages ---------- */
+/* !important is intentional: older section rules set display and must not win */
+.is-route-hidden {
+  display: none !important;
+}
+
+/* The 3D hero only belongs to the home page */
+body:not([data-page='home']) #bg3d {
+  display: none;
+}
+
+/* ---------- Home: the three rooms ---------- */
+.rooms {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 6%;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.room {
+  position: relative;
+  padding: 44px 28px 40px;
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 300px;
+  transition: background 0.4s ease;
+}
+
+.room:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.room-no {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.room h2 {
+  margin: 0;
+  font: 500 clamp(34px, 4vw, 58px) / 1 var(--font-display);
+  letter-spacing: -0.025em;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.room p {
+  margin: 0;
+  max-width: 28ch;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.room-go {
+  margin-top: auto;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--stone);
+}
+
+.room:hover {
+  background: rgba(236, 232, 223, 0.035);
+}
+
+.room:hover h2 {
+  transform: translateX(10px);
+}
+
+@media (max-width: 760px) {
+  .rooms {
+    grid-template-columns: 1fr;
+  }
+  .room,
+  .room:first-child {
+    border-left: 0;
+    padding: 32px 0;
+    min-height: 0;
+    border-top: 1px solid var(--line);
+  }
+  .room:first-child {
+    border-top: 0;
+  }
+}
+
+/* ---------- 404 ---------- */
+.route-404 {
+  min-height: 70vh;
+  padding: 22vh 6% 12vh;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: flex-start;
+}
+
+.route-404 h2 {
+  margin: 0;
+  font: 500 clamp(44px, 8vw, 110px) / 0.95 var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.route-404 h2 span {
+  font-style: italic;
+  color: var(--ash);
+}
+
+.route-404 p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ---------- 3D atmosphere layers ---------- */
+#atmo {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Vertical hairlines, like a gallery wall grid */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(to right, rgba(236, 232, 223, 0.045) 1px, transparent 1px);
+  background-size: 25% 100%;
+  background-position: 6% 0;
+}
+
+/* Huge outlined ghost word behind each page */
+.exhibition-section,
+.collection-section,
+.about-section {
+  position: relative;
+  overflow-x: clip;
+}
+
+.exhibition-section::before,
+.collection-section::before,
+.about-section::before {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  font: 500 clamp(110px, 24vw, 380px) / 1 var(--font-display);
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(236, 232, 223, 0.08);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.exhibition-section::before { content: 'EXHIBIT'; }
+.collection-section::before { content: 'ARCHIVE'; }
+.about-section::before { content: 'NOIR'; }
+
+/* ---------- Page transition curtain ---------- */
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  pointer-events: none;
+  clip-path: inset(100% 0 0 0);
+}
+
+.curtain span {
+  font: 600 clamp(48px, 8vw, 120px) / 1 var(--font-display);
+  letter-spacing: -0.04em;
+}
+
+.curtain i {
+  color: var(--ash);
+  font-style: normal;
+}

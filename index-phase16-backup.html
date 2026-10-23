@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080808" />
+  <meta name="description" content="An immersive digital gallery of classical sculpture." />
+  <title>NOIR — The Virtual Sculpture Museum</title>
+</head>
+
+<body>
+  <div id="app">
+    <header class="topbar">
+      <a class="wordmark" href="#" aria-label="Noir Museum home">NOIR<span>.</span></a>
+      <span class="edition">DIGITAL MUSEUM / VOL. 001</span>
+      <button id="light-toggle" class="light-toggle" type="button">
+        LIGHT: ON
+      </button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow"><span class="status-dot"></span> AN INTERACTIVE SCULPTURE GALLERY</div>
+        <h1>TIMELESS<br /><span>FORM.</span></h1>
+        <p class="intro">Stone, light and silence.<br />Classical sculpture reimagined in a digital space.</p>
+      </section>
+
+      <nav class="gallery-nav" aria-label="Museum collection">
+        <button class="gallery-tab active" data-artwork="bust" aria-pressed="true">
+          01 — THE BUST
+        </button>
+        <button class="gallery-tab" data-artwork="vase" aria-pressed="false">
+          02 — THE VESSEL
+        </button>
+        <button class="gallery-tab" data-artwork="torso" aria-pressed="false">
+          03 — THE FORM
+        </button>
+      </nav>
+
+      <section class="museum" aria-label="Interactive 3D sculpture">
+        <div id="scene" class="scene">
+          <div class="scene-loader" id="loader">
+            <div class="loader-content">
+              <span id="loader-label">PREPARING THE GALLERY...</span>
+
+              <div class="loader-track">
+                <span id="loader-progress"></span>
+              </div>
+
+              <span class="loader-caption">NOIR — DIGITAL MUSEUM</span>
+            </div>
+          </div>
+
+          <aside class="object-card">
+            <div class="object-number">01 / CLASSICAL COLLECTION</div>
+
+            <h2 id="artwork-title">Silent<br />Monument</h2>
+
+            <p id="artwork-description">
+              A study of volume, shadow and the enduring language of classical form.
+            </p>
+
+            <div class="object-meta">
+              <span>MATERIAL</span>
+              <strong id="artwork-material">WHITE MARBLE</strong>
+
+              <span>COLLECTION</span>
+              <strong id="artwork-period">CLASSICAL STUDIES</strong>
+            </div>
+
+            <button id="inspect" class="inspect-button" type="button">
+              INSPECT OBJECT <span>↗</span>
+            </button>
+          </aside>
+      </section>
+
+      <footer class="footer">
+        <span>AN EXPERIMENT IN DIGITAL MUSEOLOGY</span>
+        <span>SCROLL TO EXPLORE ↓</span>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
